@@ -1,0 +1,96 @@
+html, body {
+    background: #f1f1f1;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    position: relative;
+    display: block;
+    -webkit-margin-before: 0.67em;
+    -webkit-margin-after: 0.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 48px;
+    margin-bottom: 27px;
+}
+
+input {
+    width: 100%;
+    box-shadow: 0;
+    outline: none;
+    height: 42px;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 0 15%;
+    overflow-y: hidden;
+}
+
+mark {
+    text-decoration: none
+}
+
+mark[title]:hover:after {
+    content: "Marked by " attr(title);
+    display: block;
+    padding: 2px 8px;
+    color: #fff;
+    background: #2c3e50;
+    position: absolute;
+    right: -150px;
+}
+
+#header {
+    width: 100%;
+    height: 3px;
+    margin-bottom: 20px;
+    background: #a21f23;
+}
+
+.small {
+    line-height: 0;
+    margin-top: 20px;
+    margin-bottom: 13px;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: .5px;
+}
+
+.small .author {
+    font-size: 15px;
+    margin-right: 15px;
+}
+
+.small .time {
+    font-size: 15px;
+}
+
+.article img {
+    display: block;
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.title {
+    width: 800px;
+    position: relative;
+    margin: auto;
+}
+
+.content {
+    width: 800px;
+    position: relative;
+    margin: auto;
+}
+
+.content p {
+    letter-spacing: 1px;
+    line-height: 2;
+    color: #333;
+}

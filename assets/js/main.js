@@ -5,21 +5,16 @@ var app = new Vue({
   el: '#app',
   data: {
     data: news,
-    marks: [
-      {
-	member: "啦速燙",
-	newsId: 1,
-	mark: "我可以確定的是，未來 30 年我們仍會專注在實體積木的本業上。"
-      }
-    ]
+    marks: [],
+    name: '匿名使用者'
   },
   created: function () {
-/*
     path.limitToLast(30).once('value').then(function(snapshot) {
-      this.marks.push(snapshot);
+      snapshot.forEach(function(childSnapshot) {
+	this.marks.push(childSnapshot.val());
+      }.bind(this))
       this.drawMark()
     }.bind(this))
-*/
   },
   mounted: function () {
       document.getElementById('content-1').addEventListener('mouseup', function () {
@@ -27,17 +22,23 @@ var app = new Vue({
 	if (select.length < 6) {
 	  alert('字詞長度需要大於 5')
 	} else {
+	  var selectRange = this.getSelectRange(select)
 	  var data = {
-	    member: "Cara",
+	    member: this.name,
 	    newsId: 1,
-	    mark: select
+	    mark: selectRange
 	  }
 	  this.marks.push(data)
-	  //this.putToFirebase()
+	  this.pushToFirebase(data)
 	  this.drawMark()
 	}
       }.bind(this))
       this.drawMark()
+  },
+  watch: {
+    name: function (name) {
+      this.name = name
+    }
   },
   methods: {
     drawMark: function () {
@@ -45,10 +46,17 @@ var app = new Vue({
       newContent = content
       for (var item in this.marks) {
 	mark = this.marks[item]
-	newText = '<mark title="' + mark.member + '">' + mark.mark + '</mark>'
-	newContent = newContent.replace(mark.mark, newText)
+	originText = content.substring(mark.mark[0], mark.mark[1])
+	newText = '<mark title="' + mark.member + '">' + originText + '</mark>'
+	newContent = newContent.replace(originText, newText)
       }
       document.getElementById('content-1').innerHTML = newContent
+    },
+    getSelectRange: function (sentence) {
+      content = document.getElementById('content-1').textContent + ''
+      start = content.indexOf(sentence)
+      end = start + sentence.length
+      return [start, end]
     },
     getSelection: function () {
       var select = '';
@@ -62,8 +70,8 @@ var app = new Vue({
 
       return select.toString()
     },
-    putToFirebase: function () {
-      path.put(this.marks);
+    pushToFirebase: function (data) {
+      path.push(data);
     }
   }
 })
