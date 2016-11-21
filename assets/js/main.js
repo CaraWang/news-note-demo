@@ -9,7 +9,7 @@ var app = new Vue({
       {
 	member: "啦速燙",
 	newsId: 1,
-	mark: [20, 51]
+	mark: "我可以確定的是，未來 30 年我們仍會專注在實體積木的本業上。"
       }
     ]
   },
@@ -24,14 +24,18 @@ var app = new Vue({
   mounted: function () {
       document.getElementById('content-1').addEventListener('mouseup', function () {
 	var select = this.getSelection()
-	var data = {
-	  member: "Cara",
-	  newsId: 1,
-	  mark: [select.start, select.end]
-	};
-	this.marks.push(data)
-	//this.putToFirebase()
-	this.drawMark()
+	if (select.length < 6) {
+	  alert('字詞長度需要大於 5')
+	} else {
+	  var data = {
+	    member: "Cara",
+	    newsId: 1,
+	    mark: select
+	  }
+	  this.marks.push(data)
+	  //this.putToFirebase()
+	  this.drawMark()
+	}
       }.bind(this))
       this.drawMark()
   },
@@ -41,9 +45,8 @@ var app = new Vue({
       newContent = content
       for (var item in this.marks) {
 	mark = this.marks[item]
-	originText = content.substring(mark.mark[0], mark.mark[1])
-	newText = '<mark title="' + mark.member + '">' + originText + '</mark>'
-	newContent = newContent.replace(originText, newText)
+	newText = '<mark title="' + mark.member + '">' + mark.mark + '</mark>'
+	newContent = newContent.replace(mark.mark, newText)
       }
       document.getElementById('content-1').innerHTML = newContent
     },
@@ -57,21 +60,7 @@ var app = new Vue({
 	  select = document.selection.createRange().text;
       } 
 
-      //var start = select.baseOffset
-      //var end = select.extentOffset
-      var start = select.getRangeAt(0).startOffset
-      var end = select.getRangeAt(0).endOffset
-      if (end < start) {
-	var tmp = start
-        start = end
-	end = tmp
-      }
-
-      result = {
-	start: start,
-	end: end
-      }
-      return result;
+      return select.toString()
     },
     putToFirebase: function () {
       path.put(this.marks);
