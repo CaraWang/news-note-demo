@@ -4,17 +4,19 @@ html, body {
     padding: 0;
 }
 
+header {
+    width: 100%;
+    height: 3px;
+    margin-bottom: 20px;
+    background: #a21f23;
+}
+
 h1 {
     position: relative;
     display: block;
-    -webkit-margin-before: 0.67em;
-    -webkit-margin-after: 0.67em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
     font-weight: 700;
     font-size: 34px;
     line-height: 48px;
-    margin-bottom: 27px;
 }
 
 input {
@@ -24,8 +26,9 @@ input {
     height: 42px;
     font-size: 16px;
     line-height: 22px;
-    padding: 0 15%;
+    padding: 0 18%;
     overflow-y: hidden;
+    margin-top: 27px;
 }
 
 mark {
@@ -42,32 +45,26 @@ mark[title]:hover:after {
     right: -150px;
 }
 
-#header {
+footer {
     width: 100%;
     height: 3px;
-    margin-bottom: 20px;
     background: #a21f23;
 }
 
 .small {
     line-height: 0;
-    margin-top: 20px;
+    margin-top: -1px;
     margin-bottom: 13px;
     border: 0;
-    font-size: 100%;
     font: inherit;
     font-weight: 300;
     line-height: 1;
     letter-spacing: .5px;
+    font-size: 15px;
 }
 
 .small .author {
-    font-size: 15px;
     margin-right: 15px;
-}
-
-.small .time {
-    font-size: 15px;
 }
 
 .article img {
@@ -78,6 +75,7 @@ mark[title]:hover:after {
 }
 
 .title {
+    padding-top: 2px;
     width: 800px;
     position: relative;
     margin: auto;
@@ -93,4 +91,15 @@ mark[title]:hover:after {
     letter-spacing: 1px;
     line-height: 2;
     color: #333;
+}
+
+#source {
+    width: 100px;
+    margin: auto;
+}
+
+#source a {
+    color: #828282;
+    font-size: 10px;
+    text-decoration: none;
 }

@@ -5,13 +5,17 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-	<div id="header"></div>
+	<header></header>
 	<div id="app">
+		<news v-for="item in data" v-bind:news="item"></news>
+		<div id="source">
+			<a href="http://news.cnyes.com/news/id/3611086">原文網址</a>
+		</div>
 		<section class="getName">
 			<input placeholder="輸入 你/妳 的名字" v-model="name">
 		</section>
-		<news v-for="item in data" v-bind:news="item"></news>
 	</div>
+	<footer></footer>
 </body>
 <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
