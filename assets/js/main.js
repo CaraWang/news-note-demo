@@ -17,6 +17,12 @@ var app = new Vue({
     }.bind(this))
   },
   mounted: function () {
+      path.limitToLast(1).on('value', function(newMark) {
+	for (var key in newMark.val()) {
+	  this.marks.push(newMark.val()[key])
+	}
+	this.drawMark()
+      }.bind(this))
       document.getElementById('content-1').addEventListener('mouseup', function () {
 	var select = this.getSelection()
 	if (select.length < 6) {
